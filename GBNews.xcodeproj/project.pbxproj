@@ -12,6 +12,9 @@
 		E16514C125F8C78B0054A2CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16514C025F8C78B0054A2CA /* Assets.xcassets */; };
 		E16514C425F8C78B0054A2CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E16514C225F8C78B0054A2CA /* LaunchScreen.storyboard */; };
 		E16514C725F8C78B0054A2CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E16514C625F8C78B0054A2CA /* main.m */; };
+		E1792C7C25FA193D00232041 /* NewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1792C7B25FA193D00232041 /* NewCell.m */; };
+		E1E84FEF25F8CE1A00BA415C /* APIService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E84FEE25F8CE1A00BA415C /* APIService.m */; };
+		E1E84FF425F8FDBA00BA415C /* New.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E84FF325F8FDBA00BA415C /* New.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,12 @@
 		E16514C325F8C78B0054A2CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E16514C525F8C78B0054A2CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E16514C625F8C78B0054A2CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1792C7A25FA193D00232041 /* NewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCell.h; sourceTree = "<group>"; };
+		E1792C7B25FA193D00232041 /* NewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCell.m; sourceTree = "<group>"; };
+		E1E84FED25F8CE1A00BA415C /* APIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIService.h; sourceTree = "<group>"; };
+		E1E84FEE25F8CE1A00BA415C /* APIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIService.m; sourceTree = "<group>"; };
+		E1E84FF225F8FDBA00BA415C /* New.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = New.h; sourceTree = "<group>"; };
+		E1E84FF325F8FDBA00BA415C /* New.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = New.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +65,27 @@
 		E16514B325F8C78A0054A2CA /* GBNews */ = {
 			isa = PBXGroup;
 			children = (
+				E1E84FF125F8FD8C00BA415C /* Models */,
+				E1E84FEC25F8CD8800BA415C /* Services */,
 				E1E84FEA25F8CC5C00BA415C /* App */,
-				E16514BA25F8C78A0054A2CA /* ViewController.h */,
-				E16514BB25F8C78A0054A2CA /* ViewController.m */,
+				E1792C7825FA18E600232041 /* Screens */,
 				E16514C025F8C78B0054A2CA /* Assets.xcassets */,
 				E16514C225F8C78B0054A2CA /* LaunchScreen.storyboard */,
 				E16514C525F8C78B0054A2CA /* Info.plist */,
 				E16514C625F8C78B0054A2CA /* main.m */,
 			);
 			path = GBNews;
+			sourceTree = "<group>";
+		};
+		E1792C7825FA18E600232041 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E16514BA25F8C78A0054A2CA /* ViewController.h */,
+				E16514BB25F8C78A0054A2CA /* ViewController.m */,
+				E1792C7A25FA193D00232041 /* NewCell.h */,
+				E1792C7B25FA193D00232041 /* NewCell.m */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		E1E84FEA25F8CC5C00BA415C /* App */ = {
@@ -74,6 +95,24 @@
 				E16514B525F8C78A0054A2CA /* AppDelegate.m */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		E1E84FEC25F8CD8800BA415C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E1E84FED25F8CE1A00BA415C /* APIService.h */,
+				E1E84FEE25F8CE1A00BA415C /* APIService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E1E84FF125F8FD8C00BA415C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E1E84FF225F8FDBA00BA415C /* New.h */,
+				E1E84FF325F8FDBA00BA415C /* New.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +185,10 @@
 			files = (
 				E16514BC25F8C78A0054A2CA /* ViewController.m in Sources */,
 				E16514B625F8C78A0054A2CA /* AppDelegate.m in Sources */,
+				E1E84FEF25F8CE1A00BA415C /* APIService.m in Sources */,
 				E16514C725F8C78B0054A2CA /* main.m in Sources */,
+				E1792C7C25FA193D00232041 /* NewCell.m in Sources */,
+				E1E84FF425F8FDBA00BA415C /* New.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
