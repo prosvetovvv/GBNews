@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "New.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 - (void)loadNews:(void (^)(NSArray *news))completion;
+- (void)downloadPhotoFrom:(NSString *)urlString to:(UIImageView *)imageView;
 
 @end
 

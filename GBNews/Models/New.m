@@ -13,20 +13,13 @@
 {
     self = [super init];
     if(self) {
-        //NSLog(@"%@", [dictionary valueForKey:@"title"]);
+        if ([dictionary valueForKey:@"title"] == (id)[NSNull null]  || [dictionary valueForKey:@"description"] == (id)[NSNull null]  || [dictionary valueForKey:@"publishedAt"] == (id)[NSNull null] ) {
+            return nil;
+        }
         _title = [dictionary valueForKey:@"title"];
-        if (!_title) _title = @"!!!!";
-        
-        //_title = [dictionary objectForKey:@"title"] ?: @"!!!!!!!";
-        //NSLog(@"%@", [dictionary valueForKey:@"description"]);
-        
         _theDescription = [dictionary valueForKey:@"description"];
-        if (!_theDescription) _theDescription = @"!!!!!";
-        //_theDescription = [dictionary objectForKey:@"description"] ?: @"!!!!!!!";
-        
-        //NSLog(@"%@", [dictionary valueForKey:@"publishedAt"]);
         _datePublished = [self dateFromString:[dictionary valueForKey:@"publishedAt"]];
-        //_datePublished = [self dateFromString:[dictionary objectForKey:@"publishedAt"]] ?: @"!!!!!!!";
+        _urlPhoto = [dictionary valueForKey:@"urlToImage"];
     }
     
     return self;
@@ -34,12 +27,10 @@
 
 - (NSDate *)dateFromString:(NSString *)dateString
 {
-    //if (!dateString) { return  nil; }
+    if (!dateString) { return  nil; }
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    
-    if (!dateString) return [NSDate date];
     
     NSString *correctStringDate = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     correctStringDate = [correctStringDate stringByReplacingOccurrencesOfString:@"Z" withString:@" "];

@@ -28,8 +28,8 @@
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.title = @"Russian news";
     
-    [self setupActivityIndicator];
     [self setupTableView];
+    [self setupActivityIndicator];
     
     [[APIService sharedInstance] loadNews:^(NSArray * _Nonnull news) {
         self.news = news;
@@ -68,7 +68,29 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 500;
+    New *currentNew = [self.news objectAtIndex:indexPath.row];
+    
+    NSString *textTitle = currentNew.title;
+    NSString *textDescription = currentNew.theDescription;
+    
+    UIFont *fontTitle = [UIFont systemFontOfSize:20.0];
+    UIFont *fontDescription = [UIFont systemFontOfSize:12.0];
+    
+    CGFloat width = self.tableView.bounds.size.width - 30.0;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSDictionary *attributesTitle = @{NSFontAttributeName: fontTitle, NSParagraphStyleAttributeName : paragraphStyle};
+    NSDictionary *attributesDescription = @{NSFontAttributeName: fontDescription, NSParagraphStyleAttributeName : paragraphStyle};
+    
+    
+    CGRect rectTitle = [textTitle boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributesTitle context:nil];
+    CGRect rectDescription = [textDescription boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributesDescription context:nil];
+    
+    CGFloat rowHeight = 20.0 + 10.0 + rectTitle.size.height + 10.0 + 20.0 + 10.0 + rectDescription.size.height + 25.0 + 200.0 + 50;
+    
+    return rowHeight;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

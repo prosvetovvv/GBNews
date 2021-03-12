@@ -27,22 +27,36 @@
 - (void)loadNews:(void (^)(NSArray *news))completion {
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:API_URL_FOR_RUSSIA] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
-                NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-                if (response) {
-                    NSArray *articles = [response valueForKey:@"articles"];
-                    NSMutableArray *news = [NSMutableArray new];
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            if (response) {
+                NSArray *articles = [response valueForKey:@"articles"];
+                NSMutableArray *news = [NSMutableArray new];
+                
+                for (NSDictionary *article in articles) {
                     
-                    for (NSDictionary *article in articles) {
-                        New *new = [[New alloc] initWithDictionary:article];
+                    New *new = [[New alloc] initWithDictionary:article];
+                    if (new) {
                         [news addObject:new];
                     }
-                    
-                    completion(news);
+                }
+                completion(news);
+            }
+        });
+    }] resume];
+}
+
+- (void)downloadPhotoFrom:(NSString *)urlString to:(UIImageView *)imageView {
+    [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+                if (data) {
+                    UIImage *image = [[UIImage alloc] initWithData:data];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        imageView.image = image;
+                    });
                 }
             });
         }] resume];
 }
-
 
 @end

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *theDescription;
 @property (nonatomic, strong) NSDate *datePublished;
+@property (nonatomic, strong) NSString *urlPhoto;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
